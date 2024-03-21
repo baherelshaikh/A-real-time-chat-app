@@ -32,7 +32,9 @@ This is a simple chat application built using Socket.IO, Node.js, Express, and H
 
 2. Open your web browser and navigate to `http://localhost:3000`.
 
-3. Start chatting with other users in real-time!
+3. Open your another web browser and navigate to `http://localhost:3000`.
+
+4. Start chatting with other users in real-time!
 
 ## File Structure:
 
