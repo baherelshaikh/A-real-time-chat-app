@@ -12,7 +12,7 @@ This is a simple chat application built using Socket.IO, Node.js, Express, and H
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/chat-app.git
+    git clone https://github.com/baherelshaikh/chat-app.git
     ```
 
 2. Install dependencies:
