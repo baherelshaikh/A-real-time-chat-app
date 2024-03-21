@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <script src="socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <ul id="message"></ul>
+        <form action="" id="form" class="input" >
+            <input id="input" autocomplete="off" style="size: 100%;">
+            <button>Send</button>
+        </form>
+    </div>
+
+    <script type="module">
+        // selecting
+        const form = document.getElementById('form')
+        const input = document.getElementById('input')
+        
+        // creating sockent instance
+        const socket = io()
+
+        socket.on('connect', ()=>{
+            console.log('clien connected')
+        })
+
+        // sending messsage to server
+        form.addEventListener('submit', (e)=>{
+            e.preventDefault()
+            if(input.value) socket.emit('chat message',input.value)
+            input.value = ''
+        })
+        
+        socket.on('chat message',(data)=>{
+            const item = document.createElement("li")
+            item.textContent = data.message
+            const style = `
+                font-weight: 900;
+                color: #ffffff;
+                background-color: #A9A9A9;
+                border-radius: 5px;
+                padding: 10px;
+                margin-bottom: 10px;
+                text-align: left;
+            `;
+            item.style.cssText = style
+
+            if(socket.id === data.Id) {
+                item.style.backgroundColor = "#006400"
+                item.style.textAlign = "right"
+            }
+            
+            document.getElementById('message').appendChild(item)
+        })
+
+
+        socket.on('disconnect', (socket)=>{
+            console.log('You are disconnected')
+        })
+</script>
+</body>
+</html>
